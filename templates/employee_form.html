@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+
+{% block title %} Add Employee {% endblock %}
+
+{% block body %}
+
+<div class="w3-container w3-auto w3-responsive">
+    <form method="POST" class="">
+        {{ form.hidden_tag() }}
+
+        <div class="w3-row-padding w3-section w3-stretch">
+            <div class="w3-half w3-container">
+                <label for="name" class="w3-label"><strong>Name</strong></label>
+                {{ form.name(class="w3-input w3-border w3-light-grey w3-round") }}
+            </div>
+            <div class="w3-half w3-container">
+                <label for="position" class="w3-label"><strong>Position</strong></label>
+                {{ form.position(class="w3-input w3-border w3-light-grey w3-round") }}
+            </div>
+        </div>
+
+        <div class="w3-row-padding w3-section w3-stretch">
+            <div class="w3-half w3-container">
+                <label for="department" class="w3-label"><strong>Department</strong></label>
+                {{ form.department(class="w3-input w3-border w3-light-grey w3-round") }}
+            </div>
+            <div class="w3-half w3-container">
+                <label for="salary" class="w3-label"><strong>Salary</strong></label>
+                {{ form.salary(class="w3-input w3-border w3-light-grey w3-round") }}
+            </div>
+        </div>
+
+        <div class="w3-row-padding w3-section w3-stretch">
+            <div class="w3-half w3-container">
+                <label for="date_of_joining" class="w3-label"><strong>Date of Joining</strong></label>
+                {{ form.date_of_joining(class="w3-input w3-border w3-light-grey w3-round") }}
+            </div>
+            <div class="w3-half w3-container">
+                <label for="birthday" class="w3-label"><strong>Birthday</strong></label>
+                {{ form.birthday(class="w3-input w3-border w3-light-grey w3-round") }}
+            </div>
+        </div>
+
+        <div class="w3-section">
+            <label for="is_active" class="w3-label">Is Active</label>
+            {{ form.is_active(class="w3-check") }}
+        </div>
+
+        <div class="w3-row-padding w3-section w3-stretch">
+            <div class="w3-half w3-container">
+                <button type="reset" class="w3-button w3-green w3-block w3-round">Clean</button>
+            </div>
+            <div class="w3-half w3-container">
+                <button type="submit" class="w3-button w3-blue w3-block w3-round">Save</button>
+            </div>
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}

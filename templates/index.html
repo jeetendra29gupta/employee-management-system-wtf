@@ -1,0 +1,86 @@
+{% extends "layout.html" %}
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block body %}
+
+<div class="w3-row-padding w3-section w3-stretch">
+    <div class="w3-half w3-container">
+        <input class="w3-input w3-border w3-light-grey w3-round w3-center"
+               type="text" id="searchInput"
+               placeholder="&#128270; Search Employee... &#128269;"
+               onkeyup="searchEmployee()">
+    </div>
+    <div class="w3-half w3-container">
+        <a href="{{ url_for('main.add_employee') }}" class="w3-button w3-block w3-border w3-light-grey w3-round">
+            Add Employee</a>
+    </div>
+</div>
+
+<div class="w3-container w3-auto w3-responsive">
+    <table class="w3-table-all w3-hoverable" id="employeeTable">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Department</th>
+            <th>Salary</th>
+            <th>Joining Date</th>
+            <th>Birthday</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% if employees|length == 0 %}
+        <tr>
+            <td colspan="7" class="w3-center">No employees found.</td>
+        </tr>
+        {% else %}
+        {% for employee in employees %}
+        <tr>
+            <td>{{ employee.name }}</td>
+            <td>{{ employee.position }}</td>
+            <td>{{ employee.department }}</td>
+            <td>{{ employee.salary }}</td>
+            <td>{{ employee.date_of_joining.strftime('%Y-%m-%d') }}</td>
+            <td>{{ employee.birthday.strftime('%Y-%m-%d') }}</td>
+            <td>
+                <a href="{{ url_for('main.edit_employee', id=employee.id) }}">Edit</a> |
+                <a href="{{ url_for('main.delete_employee', id=employee.id) }}"
+                   onclick="return confirm('Are you sure you want to delete this employee?');">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+        {% endif %}
+        </tbody>
+    </table>
+</div>
+
+<script>
+    function searchEmployee() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("searchInput");
+        filter = input.value.toLowerCase();
+        table = document.getElementById("employeeTable");
+        tr = table.getElementsByTagName("tr");
+
+        for (i = 1; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td");
+            if (td) {
+                txtValue = "";
+                for (var j = 0; j < td.length; j++) {
+                    txtValue += td[j].textContent || td[j].innerText;
+                }
+                if (txtValue.toLowerCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+{% endblock %}
+
+
+

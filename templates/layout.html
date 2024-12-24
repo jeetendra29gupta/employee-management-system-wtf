@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/logo.png') }}">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body class="w3-container w3-sand">
+
+<div class="w3-panel w3-blue w3-section w3-round ">
+    <h1 class="w3-center">{{ title }}</h1>
+</div>
+
+<div class="w3-bar w3-black w3-border w3-round">
+    <a href="{{ url_for('main.index') }}" class="w3-bar-item w3-button">Home</a>
+
+    <span class="w3-bar-item w3-right" id="datetime">Date Time</span>
+</div>
+{% block body %}
+{% endblock %}
+<br>
+<script>
+    function fetchDateTime() {
+    fetch('/date_time')
+        .then(function (response) {
+            return response.text();
+        })
+        .then(function (data) {
+            document.getElementById("datetime").innerHTML=data;
+        })
+        .catch(function (err) {
+            console.log('error: ' + err);
+        });
+    }
+    window.addEventListener('load', function () {
+        setInterval(fetchDateTime, 1000);
+    });
+</script>
+
+</body>
+</html>
