@@ -106,13 +106,13 @@ employee-management-system/
 ---
 
 ## Screenshot
-> Employee Records
+> ### **Employee Records**
 > ![static/images/img_1.png](static/images/img_1.png)
 
-> Add Employee
+> ### **Add Employee**
 > ![static/images/img_2.png](static/images/img_2.png)
 
-> Edit Employee
+> ### **Edit Employee**
 > ![static/images/img_3.png](static/images/img_3.png)
 
 ---
